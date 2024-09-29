@@ -1,0 +1,26 @@
+/* Custom styles for the cart */
+h1 {
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+  
+  .list-group-item {
+    font-size: 1.2rem;
+  }
+  
+  .badge {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+  
+  .alert {
+    background-color: #ffc107;
+    color: #000;
+  }
+  .bg-blue {
+    background-color: blue;
+    color: white; 
+    padding: 10px; 
+    border-radius: 5px;
+  }
+  

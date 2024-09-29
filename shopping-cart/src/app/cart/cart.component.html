@@ -1,0 +1,27 @@
+<div class="container">
+  <h1 class="text-center my-4">Shopping Cart</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <ul class="list-group">
+        <li *ngFor="let item of cartItems" class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong>{{ item.name }}</strong><br>
+            Rate: <span class="badge bg-info">{{ item.rate }} USD</span><br>
+            Quantity: <span class="badge bg-secondary">{{ item.qty }}</span>
+          </div>
+          <div>
+            <button (click)="addToCart(item.name, item.rate, 1)" class="btn btn-sm btn-primary">Add Qty</button>
+            <button (click)="subToCart(item.name, 1)" class="btn btn-sm btn-danger ms-2">Subtract Qty</button>
+          </div>
+        </li>
+      </ul>
+      <div *ngIf="cartItems.length === 0" class="alert alert-warning text-center mt-4">
+        Your cart is empty!
+      </div>
+      <div ngif="let cartItems.length > 0" class="text-end my-4 bg-blue">
+        <strong>Total Amout : {{getTotalAmout()}} USD</strong>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+.item{
+    background-color: aquamarine;
+}
+
+#nav:hover{
+    background-color: lightgray;
+    border-radius: 10px;
+}
