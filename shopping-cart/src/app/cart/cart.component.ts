@@ -25,7 +25,7 @@ export class CartComponent implements OnInit {
   }
 
 
-  addToCart(name: string, rate: number, qty: number): void {
+  addToCart(name: string, rate: number, qty: number , UserId : string): void {
     this.http.post('http://localhost:3000/api/items/add-to-cart', { name, rate, qty }).subscribe(
       (response) => {
         console.log('Item added to cart:', response);

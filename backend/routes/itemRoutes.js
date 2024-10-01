@@ -1,10 +1,11 @@
-// routes/itemRoutes.js
+
 const express = require('express');
 const Item = require('../models/itemModel');
+const cart = require('../models/cartmodel');
 
 const router = express.Router();
 
-// Add a new item
+
 router.post('/', async (req, res) => {
   const { name, rate } = req.body;
   try {
@@ -28,17 +29,14 @@ router.get('/', async (req, res) => {
 
 module.exports = router;
 
-// routes/itemRoutes.js
-let cart = [];
-
-// Add to cart
-router.post('/add-to-cart', (req, res) => {
-  const { name , rate, qty } = req.body; // Expecting item ID and quantity
+router.post('/add-to-cart', async (req, res) => {
+  const { name , rate, qty } = req.body; 
   const item = cart.find(item => item.name === name);
   if (item) {
-    item.qty += qty; // Update quantity if item already in cart
+    item.qty += qty; 
   } else {
-    cart.push({ name , rate , qty }); // Add new item to cart
+    const saveItem =  await  cart.create({ name, rate, qty });
+
   }
   res.status(200).json(cart);
 });

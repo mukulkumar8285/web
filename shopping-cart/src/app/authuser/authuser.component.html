@@ -1,0 +1,9 @@
+<p>authuser works!</p>
+<form (ngSubmit)="LoginClick()">
+    <label>Email</label>
+    <input type="text"  name="email"  [(ngModel)]="userInfo.email"/>
+    <label>Password</label>
+    <input type="text"  name="email"  [(ngModel)]="userInfo.password"/>
+    <button type="submit">Login</button>
+
+</form>
