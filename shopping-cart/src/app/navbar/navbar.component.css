@@ -1,8 +1,50 @@
-.item{
-    background-color: aquamarine;
+
+.bg-blue {
+    background-color: #007bff; 
 }
 
-#nav:hover{
-    background-color: lightgray;
-    border-radius: 10px;
+
+.nav-link {
+    color: white;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1); 
+    color: #e4281b; 
+}
+
+
+.nav-link.active {
+    font-weight: bold;
+    border-bottom: 2px solid #e4281b; 
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.collapse {
+    transition: max-height 0.35s ease;
+}
+
+
+.nav-link i {
+    transition: transform 0.3s ease;
+}
+
+
+.nav-link:hover i {
+    transform: scale(1.2); 
+}
+
+
+.nav-item {
+    margin-right: 20px; 
+}
+
+/* Style for Logout item */
+.nav-item:last-child {
+    margin-right: 0; 
 }

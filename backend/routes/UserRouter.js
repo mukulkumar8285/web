@@ -1,8 +1,11 @@
 const express = require("express");
 const UserLog = require("../models/AuthUser");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
+
+const JWT_SECRET = "UIECUEUIEC";
 
 router.post("/register", async (req , res)=>{
     const {username , email , password} = req.body;
@@ -42,19 +45,28 @@ router.post("/login", async (req , res)=>{
             return res.status(400).json({message : "Email does not exist"});
         }
         const isMatch = bcrypt.compareSync(password , existingUser.password);
+        const token = jwt.sign(
+            { id: existingUser._id }, 
+            JWT_SECRET, 
+            { expiresIn: '1h' } 
+        );
         if(!isMatch){
             return res.status(400).json({message : "Invalid password"});
             }
         res.status(200).json({
             message : "User logged in successfully",
-            user : existingUser
+            user : existingUser,
+            token
         })
-
     }catch(error){
         res.status(500).json({message : "Error in login"});
     }
 })
 
-
+router.post("/logout" , async(req , res)=>{
+    res.json({
+        message : "User logged out successfully"
+    })
+})
 
 module.exports = router;

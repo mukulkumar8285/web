@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-blue item">
-    <div class="container-fluid   mx-5">
+    <div class="container-fluid mx-5">
         <div>
             <a class="navbar-brand" href="#">E-Commerce</a>
         </div>
@@ -12,19 +12,19 @@
                     <li class="nav-item">
                         <p class="nav-link active" id="nav" aria-current="page" style="cursor: pointer;" (click)="onHome()">Home</p>
                     </li>
-                   
                     <li class="nav-item">
-                        <p class="nav-link active" id="nav" (click)="onAdd()" style="cursor: pointer;" >Add Item</p>
+                        <p class="nav-link active" id="nav" (click)="onAdd()" style="cursor: pointer;">Add Item</p>
                     </li>
                     <li class="nav-item">
-                        <p class="nav-link " id="nav" (click)="onCart()" style="cursor: pointer;">
+                        <p class="nav-link active" id="nav" (click)="onCart()" style="cursor: pointer;">
                             <i class="fa-solid fa-cart-shopping" style="color: #e4281b;"></i>
                         </p>
                     </li>
+                    <li class="nav-item">
+                        <p class="nav-link" (click)="onLogout()" style="cursor: pointer;">Logout</p>
+                    </li>
                 </ul>
-              
             </div>
         </div>
     </div>
 </nav>
-

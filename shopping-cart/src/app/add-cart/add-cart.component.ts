@@ -14,6 +14,7 @@ export class AddCartComponent {
 cartItem = {
   name: '',
   rate: 0,
+  img : ''
 }
 
 constructor(private http : HttpClient){}
@@ -25,6 +26,7 @@ onSubmit(){
       this.cartItem = {
         name: '',
         rate: 0,
+        img : '',
       };
     },(error)=>{
       console.log(error);

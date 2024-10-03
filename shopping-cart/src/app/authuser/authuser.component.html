@@ -1,9 +1,39 @@
-<p>authuser works!</p>
-<form (ngSubmit)="LoginClick()">
-    <label>Email</label>
-    <input type="text"  name="email"  [(ngModel)]="userInfo.email"/>
-    <label>Password</label>
-    <input type="text"  name="email"  [(ngModel)]="userInfo.password"/>
-    <button type="submit">Login</button>
-
-</form>
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 login-box">
+        <h2 class="text-center login-title">Login</h2>
+        <form (ngSubmit)="LoginClick()" #loginForm="ngForm" class="animated-form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              class="form-control form-input" 
+              required 
+              [(ngModel)]="userInfo.email"
+              placeholder="Enter your email" />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              class="form-control form-input" 
+              required 
+              [(ngModel)]="userInfo.password"
+              placeholder="Enter your password" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block animated-button">Login</button>
+        </form>
+        <div class="text-center mt-3">
+            <p>Don't have an account? 
+              <a (click)="Register()" class="sign-up-link">Register</a>
+            </p>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+  

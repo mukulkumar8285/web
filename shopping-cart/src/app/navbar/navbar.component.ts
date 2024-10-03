@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
 
-constructor(private http : HttpClient , private router : Router){};
+constructor(private http : HttpClient , private router : Router , private authservice : AuthService){};
 
 onHome(){
   this.router.navigate(["/"]);
@@ -21,6 +22,20 @@ onCart(){
 }
 onAdd(){
   this.router.navigate(["/add-cart"])
+}
+
+onLogout(){
+    this.authservice.logout();
+
+    this.http.post("http://localhost:3000/auth/logout", {}).subscribe(
+      (response) => {
+        console.log(response)
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
+
 }
 
 

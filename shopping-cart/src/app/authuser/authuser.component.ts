@@ -26,14 +26,14 @@ LoginClick(){
       console.log(response);
       this.authService.setUser(response.user);
       this.router.navigate(["/"]);
+      localStorage.setItem('token',response.token);
     },
     (error)=>{
       console.log(error);
     }
-
   )
 }
-
-
-
+Register(){
+  this.router.navigate(["/register"]);
+}
 }

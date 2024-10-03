@@ -12,6 +12,10 @@
           <label for="itemRate" class="form-label">Item Rate</label>
           <input type="number" id="itemRate" name="rate" [(ngModel)]="cartItem.rate" class="form-control" placeholder="Enter Your Item Rate" required/>
         </div>
+        <div>
+          <label for="itemImg" class="form-label">Item Image</label>
+          <input type="text" id="itemimg" name="rate" [(ngModel)]="cartItem.img" class="form-control" placeholder="Enter Your Image Url" required/>
+        </div>
         
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
