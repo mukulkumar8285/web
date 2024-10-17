@@ -1,0 +1,49 @@
+/* Liked items list styles */
+.liked-items-list {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0;
+    margin: 20px 0; /* Add margin for spacing */
+}
+
+/* Individual liked item styles */
+.liked-item {
+    background-color: #f9f9f9; /* Light background for items */
+    border: 1px solid #ddd; /* Border around items */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Padding for content */
+    margin-bottom: 15px; /* Space between items */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation for hover effect */
+    animation: fadeIn 0.5s ease-in-out; /* Apply fade-in animation */
+}
+
+/* Hover effects */
+.liked-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+/* Image styles */
+.item-image {
+    max-width: 100%; /* Responsive image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners for images */
+    margin-top: 10px; /* Space above image */
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Start transparent */
+        transform: translateY(10px); /* Slightly translate down */
+    }
+    to {
+        opacity: 1; /* Fully opaque */
+        transform: translateY(0); /* Original position */
+    }
+}
+
+/* No items found styles */
+p {
+    font-size: 1.2rem; /* Larger font for emphasis */
+    color: #666; /* Grey color for no items message */
+}

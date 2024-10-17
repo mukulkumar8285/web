@@ -23,7 +23,9 @@ onCart(){
 onAdd(){
   this.router.navigate(["/add-cart"])
 }
-
+wishlist(){
+  this.router.navigate(["/wishlist"])
+}
 onLogout(){
     this.authservice.logout();
 

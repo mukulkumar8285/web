@@ -13,8 +13,14 @@ import { FormsModule } from '@angular/forms';
 export class AddCartComponent {
 cartItem = {
   name: '',
-  rate: 0,
-  img : ''
+  price: 0,
+  img : '',
+  size:'',
+  color:'',
+  description : '',
+  material: '',
+  discount:'',
+
 }
 
 constructor(private http : HttpClient){}
@@ -25,8 +31,13 @@ onSubmit(){
       console.log(response);
       this.cartItem = {
         name: '',
-        rate: 0,
+        price: 0,
         img : '',
+        size:'',
+        color:'',
+        description : '',
+        material : '',
+        discount : '',
       };
     },(error)=>{
       console.log(error);

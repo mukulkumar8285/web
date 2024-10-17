@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="width: 95%;">
   <div class="Under-container">
     <div class="Inner-User_container" >
       <input 
@@ -6,23 +6,30 @@
         placeholder="Enter Your Item Name" 
         [(ngModel)]="filterText" 
         (input)="filterItems()" 
+        class="search-input"
       />
-      <ul class="list-group" style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 10px; justify-content: space-evenly;">
-        <li *ngFor="let item of filterdata" class="item-list" style="display: flex; width: 20%;">
+      <ul class="list-group">
+        <li *ngFor="let item of filterdata" class="item-list">
           <div class="item-details">
-            <img [src]="item.img" alt="{{ item.name }}" class="img-fluid mt-2" />
-            <div>
-              <strong class="item-name">{{ truncateName(item.name) }}</strong><br />
-              <span style="font-weight: 500; color:red">{{ item.rate }} USD</span><br />
+            <img [src]="item.img" alt="{{ item.name }}" class="img-fluid" (click)="ItemDetail(item)" />
+            <div class="item-info">
+              <strong class="item-name">{{ truncateName(item.name) }}</strong>
+              <span class="item-rate">${{ item.rate }}</span>
+              <span class="item-discount">{{ item.discount }}%</span>
+              <span class="item-price" id="strike">${{ item.price }}</span>
+              <span class="item-description">description: {{ truncateName(item.description) }}</span>
+              <span class="item-color">{{ item.color }}</span>
+              <button class="item-size">{{ item.size }}</button>
+              <!-- <button class="item-like" (click)="LikeClick(item)">Likes: {{ item.likesCount }}</button> -->
+              <div *ngFor="let comment of item.comments">
+                <strong>comment : {{ comment.user?.username }}:</strong> {{ comment.comment }}
+              </div>
             </div>
-            <div class="button-container">
-              <button (click)="addToCart(item)" class="btn btn-sm btn-primary" [disabled]="item.addedToCart">
-                {{ item.addedToCart ? 'Added to Cart' : 'Add to Cart' }}
-              </button>
-            </div>
-          </div> 
+          </div>
         </li>
       </ul>
+
+     
 
       <div *ngIf="filterdata.length === 0" class="alert alert-warning text-center mt-4">
         No items available!

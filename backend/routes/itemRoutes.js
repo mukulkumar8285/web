@@ -7,9 +7,26 @@ const router = express.Router();
 
 
 router.post('/', async (req, res) => {
-  const { name, rate , img } = req.body;
+  const { name, size, img, description, color, material, discount, price, category } = req.body;
+  
+  const discountedPrice = price - (price * discount / 100);
+
   try {
-    const newItem = new Item({ name, rate, qty :1 , img });
+    
+    const newItem = new Item({
+      name,
+      size,
+      rate: discountedPrice, 
+      qty: 1,
+      img,
+      description,
+      color,
+      material,
+      discount,
+      price,  
+      category
+    });
+
     await newItem.save();
     res.status(201).json(newItem);
   } catch (error) {
@@ -17,10 +34,41 @@ router.post('/', async (req, res) => {
   }
 });
 
+
+router.get('/item-detail/:id', async (req, res) => {
+  try {
+    const item = await Item.findById(req.params.id).populate({
+      path: 'comments',
+      populate: {
+        path: 'user',  
+        select: 'username' 
+      }
+    }).populate("likes");;
+    if (!item) {
+      return res.status(404).send('Item not found');
+    }
+    res.json(item);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
 router.get('/', async (req, res) => {
   try {
-    const items = await Item.find();
-    res.json(items);
+    const items = await Item.find().populate({
+      path: 'comments',
+      populate: {
+        path: 'user',  
+        select: 'username' 
+      }
+    }).populate("likes");
+    const formattedItems = items.map(item => ({
+      ...item.toObject(),
+      likesCount: item.likes.length, 
+      comments: item.comments, 
+    }));
+
+    res.json(formattedItems);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -29,7 +77,7 @@ router.get('/', async (req, res) => {
 module.exports = router;
 
 router.post('/add-to-cart', async (req, res) => {
-  const { name, rate, qty, UserId , img } = req.body;
+  const { name, rate, qty, UserId , img , size , description , color , material , discount , price } = req.body;
   console.log("Request body:", req.body);
   if (!UserId) {
     return res.status(400).json({
@@ -38,16 +86,13 @@ router.post('/add-to-cart', async (req, res) => {
   }
 
   try {
-    // Await the asynchronous findOne operation
-    let existingItem = await cart.findOne({ name, UserId });
 
+    let existingItem = await cart.findOne({ name, UserId });
     if (existingItem) {
-      // If the item exists, update its quantity
       existingItem.qty += qty;
-      await existingItem.save(); // Save the updated item
+      await existingItem.save(); 
     } else {
-      // If the item does not exist, create a new one
-      const newItem = new cart({ name, rate, qty, UserId , img });
+      const newItem = new cart({ name, rate, qty, UserId, size , img , description , color , material , price , discount });
       await newItem.save();
       existingItem = newItem;
     }
@@ -65,18 +110,6 @@ router.post('/add-to-cart', async (req, res) => {
   }
 });
 
-// router.post('/sub-to-cart', (req, res) => {
-//   const { name , qty , UserId } = req.body; 
-//   const item = cart.find(item => item.name === name);
-//   if (item) {
-//     item.qty -= qty; 
-//     if(item.qty <= 0){
-//       const index = cart.indexOf(item);
-//       cart.splice(index , 1);
-//     }
-//   } 
-//   res.status(200).json(cart);
-// });
 router.post('/sub-to-cart', async (req, res) => {
   const { name, qty, UserId  } = req.body; 
   console.log("Request body:", req.body);
@@ -105,18 +138,47 @@ router.post('/sub-to-cart', async (req, res) => {
     res.status(500).json({ message: 'Error updating item in cart', error });
   }
 });
+router.delete('/remove-from-cart', async (req, res) => {
+  const { itemId, UserId } = req.body;
+  console.log("Request body:", req.body);
 
 
-router.get('/cart', async (req, res) => {
-  const UserId = req.query.UserId;
-  if(!UserId){
+  if (!UserId) {
     return res.status(400).json({ message: "UserId is required" });
   }
 
   try {
-    const cartItems = await cart.find({UserId}).populate('UserId', 'name email'); 
+    // Find the item in the cart based on itemId and UserId
+    const existingItem = await cart.findOne({ _id: itemId, UserId });
+
+    if (existingItem) {
+      // Remove the item from the cart
+      await cart.deleteOne({ _id: itemId });
+      res.status(200).json({ message: 'Item removed from cart successfully' });
+    } else {
+      res.status(404).json({ message: 'Item not found in cart' });
+    }
+  } catch (error) {
+    console.error("Error removing item from cart:", error);
+    res.status(500).json({ message: 'Error removing item from cart', error: error.message });
+  }
+});
+
+router.get('/cart', async (req, res) => {
+  const UserId = req.query.UserId;
+  if (!UserId) {
+    return res.status(400).json({ message: "UserId is required" });
+  }
+
+  try {
+    const cartItems = await cart.find({ UserId })
     res.json(cartItems);
   } catch (error) {
+    console.error('Error fetching cart items:', error);
     res.status(500).json({ message: 'Error fetching cart items', error });
   }
 });
+
+
+
+

@@ -2,18 +2,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+
 const itemRoutes = require('./routes/itemRoutes');
 const router = require('./routes/UserRouter');
+const commentRouter = require('./routes/comment');
+const payrouter = require('./routes/Payment');
+const Inforouter = require('./routes/UserInfo');
+// const wishrouter = require('./routes/Wishlist');
 
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
-app.use(express.json());
 
-// MongoDB connection
-mongoose.connect('mongodb+srv://mukulved07:sXXCXdeb5le04Zh2@cluster0.qxkhg.mongodb.net/Mean').then(() => {
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(cors());
+mongoose.connect('mongodb://localhost:27017/').then(() => {
   console.log('MongoDB connected');
 }).catch((error) => {
   console.error('MongoDB connection error:', error);
@@ -22,6 +27,9 @@ mongoose.connect('mongodb+srv://mukulved07:sXXCXdeb5le04Zh2@cluster0.qxkhg.mongo
 // Routes
 app.use('/api/items', itemRoutes);
 app.use('/auth', router);
+app.use("/user" , commentRouter);
+app.use("/api/payment" , payrouter);
+app.use("/api/user" , Inforouter);
 
 
 // Start the server

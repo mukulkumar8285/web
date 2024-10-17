@@ -10,11 +10,29 @@
           <div class="item-details" >
             <strong>{{ truncateName(item.name) }}</strong>
             <span class="rate">Rate: {{ item.rate }} USD</span>
-            <span class="quantity">Quantity: {{ item.qty }}</span>
-            <div class="button-container">
-              <button (click)="addToCart(item.name, item.rate, 1, item.img)" class="btn btn-sm btn-primary">Add Qty</button>
-              <button (click)="subToCart(item.name, 1)" class="btn btn-sm btn-danger ms-2">Sub Qty</button>
+            <span class="rate">discount : {{ item.discount }}%</span>
+            <span class="rate">Price : {{ item.price }}</span>
+
+
+            <div class="col-md-4 col-6 mb-3">
+              <label class="mb-2 d-block">Quantity</label>
+              <div class="input-group mb-3" style="width: 170px;">
+                <button (click)="subToCart(item.name, 1)"  class="btn btn-white border border-secondary px-3" type="button" id="button-addon1" data-mdb-ripple-color="dark">
+                  <i class="fas fa-minus"></i>
+                </button>
+               
+                <input type="text" class="form-control text-center border border-secondary" [(ngModel)]="item.qty" placeholder="14" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                <button (click)="addToCart(item.name, item.rate, 1, item.img)"  class="btn btn-white border border-secondary px-3" type="button" id="button-addon2" data-mdb-ripple-color="dark">
+                  <i class="fas fa-plus"></i>
+                </button>
+                <button (click)="removeItem(item)">Remove</button>
+              </div>
             </div>
+
+            <!-- <div class="button-container">
+              <button class="btn btn-sm btn-primary">Add Qty</button>
+              <button  class="btn btn-sm btn-danger ms-2">Sub Qty</button>
+            </div> -->
           </div>
         </li>
         
@@ -22,8 +40,8 @@
       <div *ngIf="cartItems.length === 0" class="alert alert-warning text-center mt-4">
         Your cart is empty!
       </div>
-      <div *ngIf="cartItems.length > 0" class="text-end my-4 total-amount" style="background-color: azure;" >
-        <strong style="color:red; background-color:aqua; padding:5px">Total Amount: {{ getTotalAmout() }} USD</strong>
+      <div *ngIf="cartItems.length > 0" class="text-end my-4 total-amount" style="background-color: azure;" > 
+        <button type="button" class="btn btn-success" (click)="pay(getTotalAmount())">Pay Amount: ${{ getTotalAmount() }}</button>
       </div>
     </div>
   </div>

@@ -7,16 +7,41 @@
           <label for="itemName" class="form-label">Item Name</label>
           <input type="text" id="itemName" name="name" [(ngModel)]="cartItem.name" class="form-control" placeholder="Enter Your Item Name" required/>
         </div>
-        
+        <label for="itemImg" class="form-label">Item Image</label>
+        <input type="text" id="itemimg" name="rate" [(ngModel)]="cartItem.img" class="form-control" placeholder="Enter Your Image Url" required/>
         <div class="mb-3">
-          <label for="itemRate" class="form-label">Item Rate</label>
-          <input type="number" id="itemRate" name="rate" [(ngModel)]="cartItem.rate" class="form-control" placeholder="Enter Your Item Rate" required/>
+          <label for="itemRate" class="form-label">Item Price</label>
+          <input type="number" id="itemRate" name="price" [(ngModel)]="cartItem.price" class="form-control" placeholder="Enter Your Item Rate" required/>
         </div>
-        <div>
-          <label for="itemImg" class="form-label">Item Image</label>
-          <input type="text" id="itemimg" name="rate" [(ngModel)]="cartItem.img" class="form-control" placeholder="Enter Your Image Url" required/>
+        <div class="mb-3">
+          <label for="itemRate" class="form-label">Item Size</label>
+          <select id="itemSize" name="size" [(ngModel)]="cartItem.size" class="form-select" required>
+            <option value="" disabled>Select Size</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+        </select>
+        </div>
+        <div class="mb-3">
+          <label for="itemRate" class="form-label">Item Description</label>
+          <input type="text" id="itemRate" name="rate" [(ngModel)]="cartItem.description" class="form-control" placeholder="Enter Your Item Rate" required/>
         </div>
         
+          <div class="mb-3">
+            <label for="itemRate" class="form-label">Item Color</label>
+            <input type="text" id="itemRate" name="rate" [(ngModel)]="cartItem.color" class="form-control" placeholder="Enter Your Item Rate" required/>
+          </div>
+          <div class="mb-3">
+            <label for="itemRate" class="form-label">Item Discount</label>
+            <input type="text" id="itemRate" name="rate" [(ngModel)]="cartItem.discount" class="form-control" placeholder="Enter Your Item Rate" required/>
+          </div>
+          
+         
+            <div class="mb-3">
+              <label for="itemRate" class="form-label">Item Material</label>
+              <input type="text" id="itemRate" name="rate" [(ngModel)]="cartItem.material" class="form-control" placeholder="Enter Your Item Rate" required/>
+            </div>
+            
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>

@@ -1,0 +1,20 @@
+<div *ngIf="likedItems.length > 0; else noItems">
+    <h3>Your Liked Items</h3>
+    <ul class="liked-items-list">
+        <li *ngFor="let item of likedItems" class="liked-item">
+            <h4>{{ item.name }}</h4>
+            <p>{{ item.description }}</p>
+            <img [src]="item.img" class="item-image" />
+            <span>{{ item.discount }}%</span>
+            <span>{{ item.rate }}</span>
+            <span>{{ item.price }}</span>
+
+            <button (click)="removeItem(item)">Remove</button>
+            <span>Likes: {{ item.likes.length }}</span>
+        </li>
+    </ul>
+</div>
+
+<ng-template #noItems>
+    <p>No liked items found.</p>
+</ng-template>
