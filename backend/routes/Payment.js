@@ -3,11 +3,9 @@ const express = require("express");
 
 const payrouter = express.Router();
 const razorpay = new Razorpay({
-    key_id: 'rzp_test_Z9MHu3v7IiVF8t',
-    key_secret: 'HKs02znAN9HXuSk31fLxnAAC',
+    key_id: 'Write Your Api Key ',
+    key_secret: 'Write Your Api Key',
 });
-
-// HKs02znAN9HXuSk31fLxnAAC api secret
 payrouter.post('/create-order', async (req, res) => {
     const { amount } = req.body;
 
