@@ -137,7 +137,7 @@ export class ItemDetailComponent implements OnInit {
   pay(amount: number) {
     this.http.post('http://localhost:3000/api/payment/create-order', { amount }).subscribe((response: any) => {
         const options = {
-            key: 'rzp_test_Z9MHu3v7IiVF8t', // Replace with your Razorpay Key ID
+            key: '_', // Replace with your Razorpay Key ID
             amount: response.amount, // Amount is in paise
             currency: response.currency,
             name: 'Mukul Kumar',
