@@ -1,48 +1,66 @@
-<div class="container">
-  <h1 class="text-center my-4">Shopping Cart</h1>
-  <div class="under-container">
-    <div class="inner-container" style="background-color: azure;">
+<div class="cart-container">
+  <h1 class="cart-title">Shopping Cart</h1>
+  <div class="cart-layout">
+    <div class="cart-items">
       <ul class="list-group">
-        <li *ngFor="let item of cartItems" class="list-item">
-          <div>
-            <img [src]="item.img" alt="{{ item.img }}" class="img-fluid mt-2" />
+        <li *ngFor="let item of cartItems" class="cart-item">
+          <div class="cart-img">
+            <img [src]="item.img" alt="{{ item.name }}" />
           </div>
-          <div class="item-details" >
-            <strong>{{ truncateName(item.name) }}</strong>
-            <span class="rate">Rate: {{ item.rate }} USD</span>
-            <span class="rate">discount : {{ item.discount }}%</span>
-            <span class="rate">Price : {{ item.price }}</span>
+          <div class="cart-details">
+            <h3>{{ truncateName(item.name) }}</h3>
+            <p>{{ item.description }}</p>
+            <p class="rate" style="text-decoration: line-through">
+              Price: <span>₹{{ item.price }}</span>
+            </p>
+            <p class="rate">
+              Rate: <span>₹{{ item.rate }}</span>
+            </p>
+            <p class="rate">
+              Discount: <span>{{ item.discount }}%</span>
+            </p>
 
-
-            <div class="col-md-4 col-6 mb-3">
-              <label class="mb-2 d-block">Quantity</label>
-              <div class="input-group mb-3" style="width: 170px;">
-                <button (click)="subToCart(item.name, 1)"  class="btn btn-white border border-secondary px-3" type="button" id="button-addon1" data-mdb-ripple-color="dark">
-                  <i class="fas fa-minus"></i>
+            <div class="quantity-controls">
+              <div style="display: flex; gap: 10px">
+                <button (click)="subToCart(item.name, 1)" class="qty-btn">
+                  -
                 </button>
-               
-                <input type="text" class="form-control text-center border border-secondary" [(ngModel)]="item.qty" placeholder="14" aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                <button (click)="addToCart(item.name, item.rate, 1, item.img)"  class="btn btn-white border border-secondary px-3" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                  <i class="fas fa-plus"></i>
+                <input type="text" [(ngModel)]="item.qty" class="qty-input" />
+                <button
+                  (click)="addToCart(item.name, item.rate, 1, item.img)"
+                  class="qty-btn"
+                >
+                  +
                 </button>
-                <button (click)="removeItem(item)">Remove</button>
+              </div>
+              <div>
+                <button (click)="removeItem(item)" class="remove-btn">
+                  Remove
+                </button>
               </div>
             </div>
-
-            <!-- <div class="button-container">
-              <button class="btn btn-sm btn-primary">Add Qty</button>
-              <button  class="btn btn-sm btn-danger ms-2">Sub Qty</button>
-            </div> -->
           </div>
         </li>
-        
       </ul>
-      <div *ngIf="cartItems.length === 0" class="alert alert-warning text-center mt-4">
+      <div *ngIf="cartItems.length === 0" class="empty-cart">
         Your cart is empty!
       </div>
-      <div *ngIf="cartItems.length > 0" class="text-end my-4 total-amount" style="background-color: azure;" > 
-        <button type="button" class="btn btn-success" (click)="pay(getTotalAmount())">Pay Amount: ${{ getTotalAmount() }}</button>
-      </div>
+    </div>
+
+    <!-- Right Side: Summary -->
+    <div class="cart-summary">
+      <h2>Order Summary</h2>
+      <p>Total Items: {{ cartItems.length }}</p>
+      <p>
+        Total Amount: <strong>${{ getTotalAmount() }}</strong>
+      </p>
+      <button
+        type="button"
+        class="checkout-btn"
+        (click)="pay(getTotalAmount())"
+      >
+        Pay Now
+      </button>
     </div>
   </div>
 </div>

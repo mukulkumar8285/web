@@ -1,0 +1,53 @@
+<div class="user-profile-container">
+  <!-- Left Side: User Info & Image -->
+  <div class="user-info" >
+    <img
+      src="assets/user-placeholder.jpg"
+      alt="User Image"
+      class="profile-image"
+    />
+    <h2>User Profile</h2>
+    <p><strong>Name:</strong> {{ showdata.username }}</p>
+    <p><strong>Email:</strong> {{ showdata.email }}</p>
+    <button class="edit-btn" (click)="toggleEdit()">Edit Profile</button>
+  </div>
+
+  <!-- Right Side: Address Form -->
+  <div class="user-info-container">
+    <div *ngIf="loading" class="loading">Loading...</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <form class="animated-form" (submit)="submitUserAddress()">
+      <label>Street:</label>
+      <input type="text" name="street" [(ngModel)]="address.street" required />
+
+      <label>City:</label>
+      <input type="text" name="city" [(ngModel)]="address.city" required />
+
+      <label>State:</label>
+      <input type="text" name="state" [(ngModel)]="address.state" required />
+
+
+      <label>Phone:</label>
+      <input type="text" name="mobile" [(ngModel)]="address.mobile" required />
+
+      <label>Postal Code:</label>
+      <input
+        type="text"
+        name="postalCode"
+        [(ngModel)]="address.postalCode"
+        required
+      />
+
+      <label>Country:</label>
+      <input
+        type="text"
+        name="country"
+        [(ngModel)]="address.country"
+        required
+      />
+
+      <button type="submit" class="save-btn">Save Address</button>
+    </form>
+  </div>
+</div>

@@ -111,6 +111,7 @@ export class CartComponent implements OnInit {
         console.log(response);
         // Remove the item from cartItems after successful deletion
         this.cartItems = this.cartItems.filter(cartItem => cartItem.id !== itemId);
+        alert('Item removed from cart');
       },
       (error) => {
         console.error(error);

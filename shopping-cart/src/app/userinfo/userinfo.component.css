@@ -1,0 +1,118 @@
+/* User Profile Container */
+.user-profile-container {
+    display: flex;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+  
+  /* Left Section - User Info */
+  .user-info {
+    width: 40%;
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #5b86e5, #36d1dc);
+    color: white;
+    border-radius: 12px 0 0 12px;
+  }
+  
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .profile-image:hover {
+    transform: scale(1.1);
+  }
+  
+  .edit-btn {
+    background-color: #fff;
+    color: #5b86e5;
+    border: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .edit-btn:hover {
+    background-color: #36d1dc;
+    color: white;
+  }
+  
+  /* Right Section - Address Form */
+  .user-info-container {
+    width: 60%;
+    padding: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animated-form label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .animated-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .animated-form input:focus {
+    border-color: #5b86e5;
+    outline: none;
+  }
+  
+  .save-btn {
+    margin-top: 15px;
+    width: 100%;
+    background: linear-gradient(135deg, #5b86e5, #36d1dc);
+    color: white;
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .save-btn:hover {
+    background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  }
+  
+  /* Loading and Error Styles */
+  .loading,
+  .error-message {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
+  /* Animation Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

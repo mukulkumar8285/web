@@ -17,7 +17,7 @@ const itemSchema = new mongoose.Schema({
     default : "kadi socha"
   },
   img:{
-    type:String,
+    type:Array,
     required:true
   },
   size:{

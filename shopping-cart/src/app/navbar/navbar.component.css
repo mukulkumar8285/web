@@ -18,7 +18,6 @@
 
 .nav-link.active {
     font-weight: bold;
-    border-bottom: 2px solid #e4281b; 
 }
 
 .navbar-toggler {

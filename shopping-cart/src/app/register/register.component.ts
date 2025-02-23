@@ -32,5 +32,9 @@ register(){
   )
 }
 
+login(){
+  this.router.navigate(["login"]);
+}
+
 
 }

@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterCartComponent } from './footer-cart/footer-cart.component';
 import { AuthuserComponent } from './authuser/authuser.component';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

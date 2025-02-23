@@ -1,5 +1,10 @@
-<div class="container">
-    <form (ngSubmit)="register()" class="registration-form">
+<!-- <div class="container">
+  <div class="container_left">
+   
+  </div>
+  <div class="container_right">
+    <div class="container_right_inner">
+      <form (ngSubmit)="register()" class="registration-form">
         <h2 class="text-center">Register</h2>
       <div class="form-group">
         <label for="username">Username</label>
@@ -14,5 +19,90 @@
         <input type="password" class="form-control" id="password" name="password" [(ngModel)]="userInfo.password" required />
       </div>
       <button type="submit" class="btn btn-primary btn-block">Register</button>
+      <p class="login_as">if Already Register <a style="color: blue;" (click)="login()">login</a> </p>
     </form>
+    </div>
+   
+  </div>
+    
+</div> -->
+<div class="register_midd">
+  <div class="right_div">
+    <div class="tophead">
+      <a href="/" class="logo">
+        <img
+          class="avatar"
+          src="/images/logo/logo.svg"
+          alt="logo"
+          width="160"
+        />
+      </a>
+    </div>
+    <div>
+      <div class="slidediv">
+        <img src="/images/slider/signup.svg" alt="slide" />
+        <!-- <h4>Intelligent content recommendations</h4> -->
+      </div>
+    </div>
+  </div>
+  <div class="left_div">
+    <h3 class="title-1">Get started with identable</h3>
+    <p class="title-2">Let’s gets started your 7-day free trial.</p>
+    <div class="formcontent">
+      <form (ngSubmit)="register()" class="registration-form">
+        <h2 class="text-center">Register</h2>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            [(ngModel)]="userInfo.username"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            [(ngModel)]="userInfo.email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            [(ngModel)]="userInfo.password"
+            required
+          />
+        </div>
+        <button class="btn btn-block btn-submit">Get Started</button>
+        <div class="bottomtxt">
+          Already have an account? <a (click)="login()">Log in</a>
+        </div>
+      </form>
+
+      <a
+        class="ide-powerby-main"
+        href="https://www.ideationx.io/"
+        target="_blank"
+      >
+        Powered by
+        <img
+          class="img-fluid d-block"
+          width="100"
+          src="/images/ideationx-logo.svg"
+          alt="logo-main"
+        />
+      </a>
+    </div>
+  </div>
 </div>

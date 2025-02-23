@@ -1,20 +1,59 @@
-<div *ngIf="likedItems.length > 0; else noItems">
+<div class="wishlist-container">
+  <div class="wishlist-left">
     <h3>Your Liked Items</h3>
     <ul class="liked-items-list">
-        <li *ngFor="let item of likedItems" class="liked-item">
-            <h4>{{ item.name }}</h4>
-            <p>{{ item.description }}</p>
-            <img [src]="item.img" class="item-image" />
-            <span>{{ item.discount }}%</span>
-            <span>{{ item.rate }}</span>
-            <span>{{ item.price }}</span>
+      <li *ngFor="let item of likedItems" class="liked-item">
+        <img [src]="item.img[0]" class="item-image" alt="{{ item.name }}" />
+        <div class="item-details">
+          <h4>{{ item.name }}</h4>
+          <p>{{ item.description }}</p>
+          <div class="color-container">
+            <span class="color-label">Color:</span>
+            <span class="color-badge">{{ item.color }}</span>
+            <span
+              class="color-box"
+              [ngStyle]="{ 'background-color': item.color }"
+            ></span>
+          </div>
+          <div class="quantity-container">
+            <span class="quantity-label">Quantity:</span>
+            <span class="quantity-badge">{{ item.qty }}</span>
+          </div>
 
-            <button (click)="removeItem(item)">Remove</button>
-            <span>Likes: {{ item.likes.length }}</span>
-        </li>
+          <div class="info-box">
+            <div class="price-info">
+              <span class="rate">⭐ {{ item.rate }}</span>
+              <span class="price">₹{{ item.price }}</span>
+              <span class="discount">{{ item.discount }}% Off</span>
+            </div>
+          </div>
+          <div class="add-to-cart">
+            <div>
+              <button (click)="removeItem(item)">Remove</button>
+            </div>
+            <div>
+              <button class="add-to-cart-btn" (click)="addTocart(item)">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
     </ul>
+  </div>
+
+  <!-- Right Side: Total Amount Summary -->
+  <div class="wishlist-right">
+    <h3>Order Summary</h3>
+    <p>Total Items: {{ likedItems.length }}</p>
+    <p>Total Price: ₹{{ calculateTotalAmount() }}</p>
+    <button class="checkout-btn" (click)="pay(calculateTotalAmount())">
+      Proceed to Checkout
+    </button>
+  </div>
 </div>
 
+<!-- No Items Template -->
 <ng-template #noItems>
-    <p>No liked items found.</p>
+  <p class="no-items">No liked items found.</p>
 </ng-template>

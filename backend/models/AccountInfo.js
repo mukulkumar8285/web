@@ -21,6 +21,10 @@ const addressSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  mobile: {
+    type: String,
+    required: true,
+  },
   userId: {
     type: mongoose.Types.ObjectId,
     ref: "UserLogin",

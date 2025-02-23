@@ -10,42 +10,49 @@ export interface Address {
   state: string;
   postalCode: string;
   country: string;
-  userId: string; // If you need to keep track of the user ID
+  userId: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
-
 export class AuthService {
-  private userKey = 'user'; 
-  
-  constructor(private router : Router ) { }
+  private userKey = 'user';
+
+  constructor(private router: Router, private http: HttpClient) {}
 
   setUser(userInfo: any) {
-    console.log("Setting user:", userInfo);
-    localStorage.setItem(this.userKey, JSON.stringify(userInfo)); 
+    console.log('Setting user:', userInfo);
+    localStorage.setItem(this.userKey, JSON.stringify(userInfo));
   }
   getUser() {
     const user = localStorage.getItem(this.userKey);
-    console.log("Getting user:", user);
-    return user ? JSON.parse(user) : null; 
+    console.log('Getting user:', user);
+    return user ? JSON.parse(user) : null;
   }
 
-  
   logout() {
     this.clearUser();
-    localStorage.removeItem('token'); 
-    this.router.navigate(['/login']); 
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 
   isLogging() {
-    return this.getUser() !== null || !!localStorage.getItem('token');; 
+    return this.getUser() !== null || !!localStorage.getItem('token');
   }
 
-
   clearUser() {
-    localStorage.removeItem(this.userKey); 
+    localStorage.removeItem(this.userKey);
+  }
+
+  fetchUserAddress(): Observable<Address> {
+    const user = this.getUser();
+    if (!user || !user._id) {
+      throw new Error('User ID is missing');
+    }
+
+    return this.http.get<Address>(
+      `http://localhost:3000/api/user/address/${user._id}`
+    );
   }
 }

@@ -33,7 +33,7 @@ LoginClick(){
     }
   )
 }
-Register(){
+register(){
   this.router.navigate(["/register"]);
 }
 }

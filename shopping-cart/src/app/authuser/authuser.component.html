@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6 login-box">
         <h2 class="text-center login-title">Login</h2>
@@ -35,5 +35,144 @@
           
       </div>
     </div>
+  </div> -->
+<!-- <div class="custom_loader">
+  <div class="pulse"></div>
+</div> -->
+<div class="register_midd">
+  <div class="right_div">
+    <div class="tophead">
+      <a href="/" class="logo">
+        <img
+          class="avatar"
+          src="/images/logo/logo.svg"
+          alt="logo"
+          width="160"
+        />
+      </a>
+    </div>
+    <div>
+      <div class="slidediv">
+        <img src="/images/slider/login.svg" alt="slide" />
+      </div>
+    </div>
   </div>
-  
+  <div class="left_div">
+    <div class="formcontent">
+      <h3 class="title-1">Log in to your account</h3>
+      <p class="title-2">Welcome back! Please enter your details.</p>
+
+      <!-- <a class="googlebtn">
+        <img
+          class="mr-2"
+          src="/images/social/linkedin.png"
+          alt="linkedin"
+          width="20"
+        />
+        Sign In With LinkedIn
+      </a>
+      <div class="ordiv">
+        <span>or</span>
+      </div> -->
+      <!-- <div class="Error" *ngIf="errorMessage">
+          <img
+            class="mr-2"
+            src="/images/error.svg"
+            alt="Error"
+            width="17"
+          />
+          <span style="font-size: 14px">{{ errorMessage }}</span>
+        </div> -->
+      <form class="text-left" (ngSubmit)="LoginClick()" #loginForm="ngForm">
+        <div class="form-group">
+          <label>Email <span style="color: red">*</span></label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control form-input"
+            required
+            [(ngModel)]="userInfo.email"
+            placeholder="Enter your email"
+          />
+          <!-- <div
+              class="invalid-feedback d-block"
+              *ngIf="
+                (userInfo.email?.dirty || userInfo.email?.touched) && userInfo.email?.hasError('pattern')
+              "
+            >
+              Please enter a valid email address.
+            </div> -->
+          <!-- <div
+              class="invalid-feedback d-block"
+              *ngIf="
+                (email?.dirty || email?.touched || isSubmitted) &&
+                email?.hasError('required')
+              "
+            >
+              Enter your email
+            </div> -->
+        </div>
+        <div class="form-group">
+          <label>Password <span style="color: red">*</span></label>
+          <div class="password-div">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control form-input"
+              required
+              [(ngModel)]="userInfo.password"
+            />
+            <!-- <i
+              [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"
+              (click)="togglePasswordVisibility()"
+              class="fa pointer"
+            ></i> -->
+          </div>
+          <!-- <div
+            class="invalid-feedback d-block"
+            *ngIf="
+              (password?.dirty || password?.touched || isSubmitted) &&
+              password?.hasError('required')
+            "
+          >
+            Creata a password
+          </div> -->
+          <a class="link" routerLink="/auth/forgot-password">Forgot password</a>
+        </div>
+        <div class="remember-check mb-0"></div>
+        <button type="submit" class="btn btn-block btn-submit">
+          Get Started
+        </button>
+        <div class="bottomtxt-1">
+          Don’t have an account ? <a (click)="register()">Register</a>
+        </div>
+        <div class="bottomtxt-2">
+          This site is protected by reCAPTCHA and the Linkedin
+          <a href="https://www.identable.io/privacy-policy" target="_blank"
+            >Privacy Policy</a
+          >
+          and
+          <a href="https://www.identable.io/terms-of-service" target="_blank"
+            >Terms of Service</a
+          >
+          apply.
+        </div>
+      </form>
+    </div>
+    <a
+      class="ide-powerby-main"
+      href="https://www.ideationx.io/"
+      target="_blank"
+    >
+      Powered by
+      <img
+        class="img-fluid d-block"
+        width="100"
+        src="/images/ideationx-logo.svg"
+        alt="logo-main"
+      />
+    </a>
+  </div>
+</div>

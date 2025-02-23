@@ -1,0 +1,45 @@
+<div class="container mt-5" *ngIf="filterdata.length > 0">
+    <h2 class="text-center">Shop by Category- Women</h2>
+  </div>
+<div class="container-image">
+    
+    <div class="row" *ngFor="let item of filterWom">
+      <div class="card product-card">
+        <!-- Discount / Offer Badge -->
+        <span *ngIf="item.offer" class="offer-badge">{{ item.offer }}</span>
+  
+        <!-- Product Image -->
+        <!-- [src]="item.img" -->
+        <img
+          [src]="item.img"
+          alt="{{ item.name }}"
+          class="card-img-top"
+          (click)="ItemDetail(item)"
+        />
+  
+        <div class="card-body">
+          <!-- <div class="rating">
+              <span class="star">⭐</span> {{ item.rating }}
+            </div> -->
+  
+          <!-- Product Name -->
+          <h5 class="card-title">{{ truncateName(item.name, 35) }}</h5>
+  
+          <!-- Description -->
+          <p class="card-text text-muted">
+            {{ truncateName(item.description, 50) }}
+          </p>
+  
+          <!-- Price Details -->
+          <div class="price-details">
+            <span class="final-price">₹{{ item.rate }}</span>
+            <span class="original-price">₹{{ item.price }}</span>
+            <span class="discount">{{ item.discount }}% OFF</span>
+          </div>
+  
+          <!-- Wishlist Icon -->
+          <button class="wishlist-btn" (click)="toggleWishlist(item)">❤️</button>
+        </div>
+      </div>
+    </div>
+  </div>

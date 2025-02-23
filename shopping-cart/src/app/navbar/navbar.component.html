@@ -1,69 +1,129 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-blue item">
+<style>
+  /* Navbar Styling */
+  .navbar {
+    transition: background 0.5s ease-in-out;
+  }
+  .navbar:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  /* Sticky Header */
+  .sticky-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Nav Links */
+  .nav-link {
+    position: relative;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: white !important;
+    transition: all 0.3s;
+    padding-bottom: 5px;
+    cursor: pointer;
+  }
+
+  /* Animated Underline */
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: #ff4500;
+    transition: width 0.3s ease-in-out;
+  }
+
+  /* Underline on Hover and Active Tab */
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  /* Wishlist & Icons */
+  .wishlist-icon:hover {
+    color: red !important;
+  }
+  .cart-icon {
+    font-size: 1.5rem;
+  }
+</style>
+
+<!-- Header with Animated Underline -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid mx-5">
-    <div>
-      <a class="navbar-brand" href="#">E-Commerce</a>
-    </div>
-    <div>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          
-          <li class="nav-item">
-            <p
-              class="nav-link active"
-              id="nav"
-              aria-current="page"
-              style="cursor: pointer"
-              (click)="onHome()"
-            >
-              Home
-            </p>
-          </li>
-          <li class="nav-item">
-            <p
-              class="nav-link active"
-              id="nav"
-              (click)="onAdd()"
-              style="cursor: pointer"
-            >
-              Add Item
-            </p>
-          </li>
-          <li class="nav-item">
-            <p
-              class="nav-link active"
-              id="nav"
-              (click)="onCart()"
-              style="cursor: pointer"
-            >
-              <i class="fa-solid fa-cart-shopping" style="color: #e4281b"></i>
-            </p>
-          </li>
-          <li (click)="wishlist()" style="cursor: pointer;"
-            class="nav-item"
-            class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center"
-            target="_blank"
-          >
-            <i  class="fas fa-heart m-1 me-md-2"></i>
-            <p  class="d-none d-md-block mb-0">Wishlist</p>
-          </li>
-          <li class="nav-item">
-            <p class="nav-link" (click)="onLogout()" style="cursor: pointer">
-              Logout
-            </p>
-          </li>
-        </ul>
-      </div>
+    <a class="navbar-brand text-warning" style="cursor: pointer;">Kaedi Soch</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDark"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDark">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" id="men" (click)="onAdd()">Test</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="home" (click)="onHome()">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="men" (click)="MenPage()">Men</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="women" (click)="WomenPage()">Women</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link wishlist-icon" (click)="wishlist()"
+            ><i class="fas fa-heart text-danger"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="cart" (click)="onCart()"
+            ><i class="fas fa-shopping-cart cart-icon"></i
+          ></a>
+        </li>
+        <li>
+          <a class="nav-link" (click)="onLogout()">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="accountInfo()"
+            ><i class="fas fa-user-circle"></i
+          ></a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // JavaScript to dynamically update active class
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", function (event) {
+      // Prevent clicking on icons from causing issues
+      if (event.target.tagName === "I") {
+        event.target.closest("a").click();
+        return;
+      }
+
+      // Remove "active" class from all nav-links
+      document
+        .querySelectorAll(".nav-link")
+        .forEach((el) => el.classList.remove("active"));
+
+      // Add "active" class to the clicked link
+
+      this.classList.add("active");
+    });
+  });
+</script>

@@ -18,7 +18,7 @@ const PORT = 3000;
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
-mongoose.connect('mongodb://localhost:27017/').then(() => {
+mongoose.connect('mongodb://localhost:27017/shopping-cart').then(() => {
   console.log('MongoDB connected');
 }).catch((error) => {
   console.error('MongoDB connection error:', error);
@@ -30,6 +30,12 @@ app.use('/auth', router);
 app.use("/user" , commentRouter);
 app.use("/api/payment" , payrouter);
 app.use("/api/user" , Inforouter);
+
+app.post("/api/login" , (req , res)=>{
+console.log(req.body);
+res.redirect("http://localhost:4200/dashboard");
+
+})
 
 
 // Start the server
